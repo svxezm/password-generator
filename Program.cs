@@ -29,6 +29,16 @@ class Program
             case "-l":
                 isList = true;
                 break;
+            case "-H":
+                Console.WriteLine(String.Join(
+                    Environment.NewLine,
+                    "Arguments:",
+                    "  --length, -L\t\t\t\tDefine password length.",
+                    "  --clear, -C\t\t\t\tClear all saved passwords.",
+                    "  --list, -l\t\t\t\tList all saved passwords.",
+                    "  -H\t\t\t\t\tPrints this help message."
+                ));
+                break;
             default:
                 return;
         };

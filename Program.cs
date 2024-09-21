@@ -16,6 +16,14 @@ class Program
         string fileName = "used-passwords.txt";
         _usedPasswords = File.ReadAllLines("./" + fileName).ToList();
 
+        StringBuilder helpMessage = new StringBuilder();
+
+        helpMessage.AppendLine("Arguments:");
+        helpMessage.AppendFormat("  --length, -L {0} Define password length.\n", "\t\t\t\t");
+        helpMessage.AppendFormat("  --clear, -C {0} Clear all saved passwords.\n", "\t\t\t\t");
+        helpMessage.AppendFormat("  --list, -l {0} List all saved passwords.\n", "\t\t\t\t");
+        helpMessage.AppendFormat("  -H {0} Prints this help message.", "\t\t\t\t\t");
+
         switch(args[0]) {
             case "--length":
             case "-L":
@@ -30,17 +38,11 @@ class Program
                 isList = true;
                 break;
             case "-H":
-                Console.WriteLine(String.Join(
-                    Environment.NewLine,
-                    "Arguments:",
-                    "  --length, -L\t\t\t\tDefine password length.",
-                    "  --clear, -C\t\t\t\tClear all saved passwords.",
-                    "  --list, -l\t\t\t\tList all saved passwords.",
-                    "  -H\t\t\t\t\tPrints this help message."
-                ));
+                Console.WriteLine(helpMessage);
                 break;
             default:
-                return;
+                Console.WriteLine(helpMessage);
+                break;
         };
 
         if (isPassword && int.TryParse(args[1], out int length))
